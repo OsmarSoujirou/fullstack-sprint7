@@ -23,4 +23,37 @@ public class Payment {
     @AttributeOverride(name = "verificationCode", column = @Column(name = "card_verification_code"))
     private Card card;
 
+    /** @deprecated */
+    protected Payment() {
+    }
+
+    public Payment(BigDecimal value, PaymentStatus status, Card card) {
+        this.value = value;
+        this.status = status;
+        this.card = card;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public PaymentStatus getStatus() {
+        return status;
+    }
+
+    public void updatePayment() {
+        this.status = this.getStatus().update();
+    }
+
+    public void canceledPayment() {
+        this.status = this.getStatus().canceled();
+    }
+
+    public Card getCard() {
+        return card;
+    }
 }

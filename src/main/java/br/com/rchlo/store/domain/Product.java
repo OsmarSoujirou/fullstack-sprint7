@@ -1,10 +1,9 @@
 package br.com.rchlo.store.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -24,6 +23,12 @@ public class Product {
 
     private BigDecimal discount;
 
+    @OneToMany(mappedBy = "product")
+    private List<ProductImage> productImage = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
+
     @Enumerated(EnumType.STRING)
     private Color color;
 
@@ -35,7 +40,8 @@ public class Product {
     protected Product() {
     }
 
-    public Product(Long code, String name, String description, String slug, String brand, BigDecimal price, BigDecimal discount, Color color, Integer weightInGrams) {
+    public Product(Long code, String name, String description, String slug, String brand, BigDecimal price,
+                   BigDecimal discount, Color color, Integer weightInGrams) {
         this.code = code;
         this.name = name;
         this.description = description;
@@ -81,5 +87,13 @@ public class Product {
 
     public Integer getWeightInGrams() {
         return weightInGrams;
+    }
+
+    public List<ProductImage> getProductImage() {
+        return productImage;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }

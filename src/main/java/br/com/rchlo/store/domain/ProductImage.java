@@ -8,9 +8,13 @@ public class ProductImage {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
     private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
 }

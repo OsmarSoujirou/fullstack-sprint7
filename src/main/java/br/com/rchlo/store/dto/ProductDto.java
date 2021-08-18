@@ -1,8 +1,10 @@
 package br.com.rchlo.store.dto;
 
 import br.com.rchlo.store.domain.Product;
+import br.com.rchlo.store.domain.ProductImage;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductDto {
 
@@ -26,6 +28,10 @@ public class ProductDto {
 
     private final Integer weightInGrams;
 
+    private final List<ProductImage> productImages;
+
+    private final CategoryDto category;
+
     public ProductDto(Product product) {
         this.code = product.getCode();
         this.name = product.getName();
@@ -37,6 +43,8 @@ public class ProductDto {
         this.effectivePrice = this.hasDiscount ? this.originalPrice.subtract(product.getDiscount()) : this.originalPrice;
         this.color = product.getColor().getDescription();
         this.weightInGrams = product.getWeightInGrams();
+        this.productImages = product.getProductImage();
+        this.category = new CategoryDto(product.getCategory());
     }
 
     public Long getCode() {
@@ -77,5 +85,13 @@ public class ProductDto {
 
     public Integer getWeightInGrams() {
         return weightInGrams;
+    }
+
+    public List<ProductImage> getProductImages() {
+        return productImages;
+    }
+
+    public CategoryDto getCategory() {
+        return category;
     }
 }
