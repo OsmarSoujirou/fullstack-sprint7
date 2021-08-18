@@ -19,11 +19,10 @@ public class Category {
     /**
      * @deprecated
      */
-    protected Category() {
+    public Category() {
     }
 
-    public Category(Long id, String name, String slug, Integer position) {
-        this.id = id;
+    public Category(String name, String slug, Integer position) {
         this.name = name;
         this.slug = slug;
         this.position = position;

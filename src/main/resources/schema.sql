@@ -3,6 +3,8 @@ drop table if exists product_image;
 drop table if exists product_available_sizes;
 drop table if exists product;
 drop table if exists category;
+drop table if exists users;
+drop table if exists profile;
 
 create table category (
     id bigint(20) not null auto_increment,
@@ -63,3 +65,24 @@ create table payment (
     card_verification_code varchar(3) not null,
     primary key (id)
 ) engine=InnoDB default charset=latin1;
+
+create table profile (
+    id bigint(20) not null auto_increment,
+    profile varchar(255) not null,
+    primary key (id)
+) engine=InnoDB default charset=latin1;
+
+create table users (
+    id bigint(20) not null auto_increment,
+    user varchar(255) not null,
+    pass varchar(255) not null,
+    profile_id bigint,
+    primary key (id)
+) engine=InnoDB default charset=latin1;
+
+alter table users
+    add constraint FK_users_profile
+        foreign key (profile_id)
+            references profile (id);
+
+

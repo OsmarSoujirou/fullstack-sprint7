@@ -8,11 +8,11 @@ import java.math.BigDecimal;
 
 public class PaymentDto {
 
-    private Long id;
+    private final Long id;
 
-    private BigDecimal value;
+    private final BigDecimal value;
 
-    private PaymentStatus status;
+    private final PaymentStatus status;
 
     public PaymentDto(Payment payment) {
         this.id = payment.getId();

@@ -46,11 +46,11 @@ public class Payment {
     }
 
     public void updatePayment() {
-        this.status = this.getStatus().update();
+        this.status = this.status.update();
     }
 
     public void canceledPayment() {
-        this.status = this.getStatus().canceled();
+        this.status = this.status.canceled();
     }
 
     public Card getCard() {
