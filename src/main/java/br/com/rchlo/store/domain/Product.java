@@ -34,7 +34,9 @@ public class Product {
 
     private Integer weightInGrams;
 
-//    private List<Size> availableSizes;
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    private List<Size> availableSizes;
 
     /** @deprecated */
     protected Product() {
@@ -95,5 +97,9 @@ public class Product {
 
     public Category getCategory() {
         return category;
+    }
+
+    public List<Size> getAvailableSizes() {
+        return availableSizes;
     }
 }

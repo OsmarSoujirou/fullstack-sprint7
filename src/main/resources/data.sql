@@ -54,4 +54,5 @@ insert ignore into payment (id, value, card_client_name, card_number, card_expir
    (4, 400.0, 'JOÃO QUEIROZ', '2222 3333 2222 4444', '2025-04', '567', 'CANCELED');
 
 insert ignore into profile(id, profile) values ('1', 'ADMIN');
-insert ignore into users(id, user, pass, profile_id) values ('1', 'fulano','$2a$12$6xrggXqaInUu7FjMG12DG.is.PRFJSyGFV8e7lr3Iiuqmw60Ex0I6', '1');
+insert ignore into users(id, user, pass) values ('1', 'fulano','$2a$10$21v.EaXlg7/w41qus.5sNeuJA8/B8nyYfSPnf9CNYhzAnJq77jbX6');
+insert ignore into profile_users(profile_id, user_id) values ('1', '1');

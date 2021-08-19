@@ -62,6 +62,8 @@ class ProductRepositoryTest {
                     null,
                     Color.WHITE,
                     98));
+
+
         }
     }
 
@@ -101,7 +103,6 @@ class ProductRepositoryTest {
         assertEquals(1, blueProducts.getAmount());
         assertEquals(Color.BLUE.getDescription(), blueProducts.getColor());
 
-
         ProductByColorDto whiteProducts = reportProductsByColor.stream()
                 .filter(r -> r.getColor().equals(Color.WHITE.getDescription()))
                 .findFirst()
@@ -110,13 +111,12 @@ class ProductRepositoryTest {
         assertEquals(2, whiteProducts.getAmount());
         assertEquals(Color.WHITE.getDescription(), whiteProducts.getColor());
 
-
         ProductByColorDto redProducts = reportProductsByColor.stream()
                 .filter(r -> r.getColor().equals(Color.RED.getDescription()))
                 .findFirst()
                 .orElse(null);
 
-        Assert.assertThrows(NullPointerException.class, () -> redProducts.getAmount());
+        Assert.assertNull(redProducts);
 
     }
 

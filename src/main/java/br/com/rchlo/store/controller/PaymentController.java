@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/payments")
 public class PaymentController {
 
-    @Autowired
     private final PaymentRepository paymentRepository;
 
     public PaymentController(PaymentRepository paymentRepository) {

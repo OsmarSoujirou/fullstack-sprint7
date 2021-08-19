@@ -2,9 +2,11 @@ package br.com.rchlo.store.dto;
 
 import br.com.rchlo.store.domain.Product;
 import br.com.rchlo.store.domain.ProductImage;
+import br.com.rchlo.store.domain.Size;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductDto {
 
@@ -28,9 +30,11 @@ public class ProductDto {
 
     private final Integer weightInGrams;
 
-    private final List<ProductImage> productImages;
+    private final List<String> productImages;
 
     private final CategoryDto category;
+
+    private final List<String> availableSizes;
 
     public ProductDto(Product product) {
         this.code = product.getCode();
@@ -43,8 +47,9 @@ public class ProductDto {
         this.effectivePrice = this.hasDiscount ? this.originalPrice.subtract(product.getDiscount()) : this.originalPrice;
         this.color = product.getColor().getDescription();
         this.weightInGrams = product.getWeightInGrams();
-        this.productImages = product.getProductImage();
+        this.productImages = product.getProductImage().stream().map(ProductImage::getImageUrl).collect(Collectors.toList());
         this.category = new CategoryDto(product.getCategory());
+        this.availableSizes = product.getAvailableSizes().stream().map(Size::name).collect(Collectors.toList());
     }
 
     public Long getCode() {
@@ -87,11 +92,15 @@ public class ProductDto {
         return weightInGrams;
     }
 
-    public List<ProductImage> getProductImages() {
+    public List<String> getProductImages() {
         return productImages;
     }
 
     public CategoryDto getCategory() {
         return category;
+    }
+
+    public List<String> getAvailableSizes() {
+        return availableSizes;
     }
 }

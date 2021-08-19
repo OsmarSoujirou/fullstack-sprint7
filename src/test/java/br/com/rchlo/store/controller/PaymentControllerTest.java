@@ -157,14 +157,16 @@ class PaymentControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .post(uri)
                 .content(jsonPaymentValid)
-                .contentType(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers
                 .status()
                 .is(201));
 
         mockMvc.perform(MockMvcRequestBuilders
                 .post(uri)
                 .content(jsonPaymentValid)
-                .contentType(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers
                 .status()
                 .is(201));
 

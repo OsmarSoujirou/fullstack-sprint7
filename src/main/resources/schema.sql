@@ -3,6 +3,7 @@ drop table if exists product_image;
 drop table if exists product_available_sizes;
 drop table if exists product;
 drop table if exists category;
+drop table if exists profile_users;
 drop table if exists users;
 drop table if exists profile;
 
@@ -76,13 +77,20 @@ create table users (
     id bigint(20) not null auto_increment,
     user varchar(255) not null,
     pass varchar(255) not null,
-    profile_id bigint,
     primary key (id)
 ) engine=InnoDB default charset=latin1;
 
-alter table users
-    add constraint FK_users_profile
-        foreign key (profile_id)
-            references profile (id);
+create table profile_users (
+
+    profile_id bigint(20) not null,
+    user_id bigint(20) not null,
+    constraint FK_profile_id foreign key (profile_id)
+        references profile (id)
+        --on update no action on delete no action
+        ,
+    constraint FK_user_id foreign key (user_id)
+        references users (id)
+        --on update no action on delete no action
+) engine=InnoDB default charset=latin1;
 
 
